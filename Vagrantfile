@@ -4,8 +4,8 @@ Vagrant.configure("2") do |config|
     ubuntu.vm.box = "precise-server-cloudimg-amd64-vagrant-disk1"
     ubuntu.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
     ubuntu.vm.network :private_network, ip: "192.168.88.2"
-    #ubuntu.vm.network :forwarded_port, guest: 8140, host: 9140
-    #ubuntu.vm.network :forwarded_port, guest: 443, host: 24431
+    ubuntu.vm.network :forwarded_port, guest: 8140, host: 9140
+    ubuntu.vm.network :forwarded_port, guest: 443, host: 24431
     #ubuntu.vm.network :forwarded_port, guest: 22, host: 20022
     ubuntu.vm.hostname = "vm.ubuntu.lab"
     ubuntu.vm.provision :shell, :path => "ubuntu-bootstrap.sh"
@@ -39,9 +39,9 @@ Vagrant.configure("2") do |config|
     oracle59.vm.box = "oracle59"
     oracle59.vm.box_url = "https://dl.dropbox.com/s/n5o3gfdgjc3ekhl/oracle59.box"
     oracle59.vm.network :private_network, ip: "192.168.88.5"
-    #oracle59.vm.network :forwarded_port, guest: 22, host: 20025
+    oracle59.vm.network :forwarded_port, guest: 22, host: 20025
     oracle59.vm.hostname = "vm.oracle59.lab"
-    oracle59.vm.provision :shell, :path => "oracle59-bootstrap.sh"
+    #oracle59.vm.provision :shell, :path => "oracle59-bootstrap.sh"
   end
 
 end

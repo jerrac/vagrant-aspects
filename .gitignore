@@ -2,3 +2,4 @@
 .vagrant/*
 *sublime-*
 *.pub
+tmp/*
