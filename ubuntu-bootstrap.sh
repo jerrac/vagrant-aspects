@@ -11,5 +11,6 @@ echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise-backports main restric
 echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restricted universe multiverse" >>/vagrant/tmp/newapt
 cat /etc/apt/sources.list >> /vagrant/tmp/newapt
 cp /vagrant/tmp/newapt /etc/apt/sources.list
-#apt-get update
+#trying to install packages on a clean install doesn't work without running this first.
+apt-get update
 #apt-get -y dist-upgrade
