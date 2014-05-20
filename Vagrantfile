@@ -15,8 +15,10 @@ Vagrant.configure("2") do |config|
   #end
   
   config.vm.define :centos do |centos|
-    centos.vm.box = "CentOS-6.5-x86_64-v20140110"
-    centos.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140110.box"
+    centos.vm.box = "centos-65-x86_64-virtualbox-nocm-0.2.0"
+    centos.vm.box_url = "https://s3.amazonaws.com/puppetlabs-vagrantcloud/centos-65-x86_64-virtualbox-nocm-0.2.0.box"
+    #centos.vm.box = "CentOS-6.5-x86_64-v20140110"
+    #centos.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140110.box"
     centos.vm.network :private_network, ip: "192.168.88.3"
     #centos.vm.network :forwarded_port, guest: 8140, host: 9140
     centos.vm.network :forwarded_port, guest: 80, host: 9083
@@ -43,6 +45,20 @@ Vagrant.configure("2") do |config|
     oracle59.vm.hostname = "vm.oracle59.lab"
     #oracle59.vm.provision :shell, :path => "oracle59-bootstrap.sh"
   end
+
+  config.vm.define :ubuntutrusty do |ubuntutrusty|
+    ubuntutrusty.vm.box = "trusty-server-cloudimg-amd64-vagrant-disk1"
+    ubuntutrusty.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    ubuntutrusty.vm.network :private_network, ip: "192.168.88.6"
+    ubuntutrusty.vm.network :forwarded_port, guest: 8140, host: 9146
+    ubuntutrusty.vm.network :forwarded_port, guest: 443, host: 24436
+    #ubuntutrusty.vm.network :forwarded_port, guest: 22, host: 20026
+    ubuntutrusty.vm.hostname = "vm.ubuntutrusty.lab"
+    ubuntutrusty.vm.provision :shell, :path => "ubuntutrusty-bootstrap.sh"
+  end
+  #config.vm.provider "virtualbox" do |ubuntutrusty|
+  #  ubuntutrusty.customize ["modifyvm", :id, "--memory", "4096"]
+  #end
 
 end
 
