@@ -4,11 +4,13 @@ Vagrant.configure("2") do |config|
     ubuntu.vm.box = "precise-server-cloudimg-amd64-vagrant-disk1"
     ubuntu.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
     ubuntu.vm.network :private_network, ip: "192.168.88.2"
-    ubuntu.vm.network :forwarded_port, guest: 8140, host: 9140
-    ubuntu.vm.network :forwarded_port, guest: 443, host: 24431
-    #ubuntu.vm.network :forwarded_port, guest: 22, host: 20022
+    ubuntu.vm.network :forwarded_port, guest: 8140, host: 9140, auto_correct: true
+    ubuntu.vm.network :forwarded_port, guest: 9292, host: 9292, auto_correct: true
+    ubuntu.vm.network :forwarded_port, guest: 9300, host: 9302, auto_correct: true
+    ubuntu.vm.network :forwarded_port, guest: 9200, host: 9201, auto_correct: true
+    ubuntu.vm.network :forwarded_port, guest: 443, host: 24431, auto_correct: true
     ubuntu.vm.hostname = "vm.ubuntu.lab"
-    ubuntu.vm.provision :shell, :path => "ubuntu-bootstrap.sh"
+    #ubuntu.vm.provision :shell, :path => "ubuntu-bootstrap.sh"
   end
   #config.vm.provider "virtualbox" do |ubuntu|
   #  ubuntu.customize ["modifyvm", :id, "--memory", "4096"]
@@ -20,9 +22,11 @@ Vagrant.configure("2") do |config|
     #centos.vm.box = "CentOS-6.5-x86_64-v20140110"
     #centos.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140110.box"
     centos.vm.network :private_network, ip: "192.168.88.3"
-    #centos.vm.network :forwarded_port, guest: 8140, host: 9140
-    centos.vm.network :forwarded_port, guest: 80, host: 9083
-    centos.vm.network :forwarded_port, guest: 22, host: 20023
+    centos.vm.network :forwarded_port, guest: 8140, host: 9141, auto_correct: true
+    centos.vm.network :forwarded_port, guest: 9292, host: 9293, auto_correct: true
+    centos.vm.network :forwarded_port, guest: 9300, host: 9303, auto_correct: true
+    centos.vm.network :forwarded_port, guest: 9200, host: 9202, auto_correct: true
+    centos.vm.network :forwarded_port, guest: 443, host: 24432, auto_correct: true
     centos.vm.hostname = "vm.centos.lab"
     centos.vm.provision :shell, :path => "centos-bootstrap.sh"
   end
