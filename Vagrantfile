@@ -23,10 +23,12 @@ Vagrant.configure("2") do |config|
     #centos.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140110.box"
     centos.vm.network :private_network, ip: "192.168.88.3"
     centos.vm.network :forwarded_port, guest: 8140, host: 9141, auto_correct: true
+    centos.vm.network :forwarded_port, guest: 8080, host: 8888, auto_correct: true
     centos.vm.network :forwarded_port, guest: 9292, host: 9293, auto_correct: true
     centos.vm.network :forwarded_port, guest: 9300, host: 9303, auto_correct: true
     centos.vm.network :forwarded_port, guest: 9200, host: 9202, auto_correct: true
     centos.vm.network :forwarded_port, guest: 443, host: 24432, auto_correct: true
+    centos.vm.network :forwarded_port, guest: 80, host: 24342, auto_correct: true
     centos.vm.hostname = "vm.centos.lab"
     centos.vm.provision :shell, :path => "centos-bootstrap.sh"
   end
