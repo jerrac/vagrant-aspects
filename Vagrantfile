@@ -66,5 +66,17 @@ Vagrant.configure("2") do |config|
   #  ubuntutrusty.customize ["modifyvm", :id, "--memory", "4096"]
   #end
 
+  #http://puppet-vagrant-boxes.puppetlabs.com/debian-73-x64-virtualbox-nocm.box
+  config.vm.define :wheezy do |wheezy|
+    wheezy.vm.box = "debian-73-x64-virtualbox-nocm"
+    wheezy.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/debian-73-x64-virtualbox-nocm.box"
+    wheezy.vm.network :private_network, ip: "192.168.88.7"
+    wheezy.vm.network :forwarded_port, guest: 8140, host: 9147
+    wheezy.vm.network :forwarded_port, guest: 443, host: 24437
+    #wheezy.vm.network :forwarded_port, guest: 22, host: 20027
+    wheezy.vm.hostname = "vm.wheezy.lab"
+    wheezy.vm.provision :shell, :path => "wheezy-bootstrap.sh"
+  end
+
 end
 
